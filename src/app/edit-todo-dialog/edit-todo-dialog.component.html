@@ -1,0 +1,8 @@
+<form (submit)="submit($event)">
+  <mat-form-field class="example-full-width">
+    <mat-label>Edit Todo</mat-label>
+    <input matInput [(ngModel)]="text" name="input">
+  </mat-form-field>
+  <button mat-button (click)="submit($event)">Save</button>
+  <button mat-button (click)="cancel($event)">Cancel</button>
+</form>

@@ -1,0 +1,7 @@
+<form id="form" (submit)="submit($event)">
+  <mat-form-field id="formField">
+    <mat-label>Todo</mat-label>
+    <input matInput [(ngModel)]="text" name="text">
+  </mat-form-field>
+</form>
+<i class="fa fa-plus-circle fa-3x" (click)="submit($event)"></i>

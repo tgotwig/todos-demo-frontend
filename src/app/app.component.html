@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-button-toggle-group id="toggleGroup" name="fontStyle" aria-label="Font Style" [value]="activeTab">
+
+    <mat-button-toggle id="todos" value="todos" routerLink="/todos" routerLinkActive="active">Todos</mat-button-toggle>
+    <mat-button-toggle id="create" value="create" routerLink="/create">Create Todo</mat-button-toggle>
+
+  </mat-button-toggle-group>
+
+  <mat-card-content id="content">
+    <router-outlet></router-outlet>
+  </mat-card-content>
+</mat-card>

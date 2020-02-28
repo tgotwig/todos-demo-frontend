@@ -1,0 +1,14 @@
+#toggleGroup {
+  grid-area: toggleGroup;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+#todos, #create {
+  width: 100%;
+  cursor: pointer;
+}
+
+#content {
+  grid-area: content;
+}
