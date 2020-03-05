@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Todo } from '../interfaces';
 import { DataService } from '../#services/data.service';
+import { HttpService } from '../#services/http.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditTodoDialogComponent } from '../edit-todo-dialog/edit-todo-dialog.component';
 
@@ -13,11 +14,13 @@ export class TodoComponent {
   @Input() todo: Todo;
 
   constructor(
-    public dataService: DataService,
-    public dialog: MatDialog) { }
+    private dataService: DataService,
+    private dialog: MatDialog,
+    private httpService: HttpService) { }
 
   removeTodo() {
-    this.dataService.removeTodo(this.todo);
+    this.httpService.removeTodo(this.todo.id)
+      .then(todos => this.dataService.todos = todos);
   }
 
   openDialog() {

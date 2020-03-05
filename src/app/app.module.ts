@@ -13,6 +13,8 @@ import { CreateTodoComponent } from './create-todo/create-todo.component';
 import { FormsModule } from '@angular/forms';
 import { EditTodoDialogComponent } from './edit-todo-dialog/edit-todo-dialog.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,8 @@ import { EditTodoDialogComponent } from './edit-todo-dialog/edit-todo-dialog.com
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   entryComponents: [
     EditTodoDialogComponent

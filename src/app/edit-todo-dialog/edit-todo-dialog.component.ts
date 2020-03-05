@@ -12,17 +12,15 @@ export class EditTodoDialogComponent {
   text: string;
 
   constructor(
-    public dialogRef: MatDialogRef<EditTodoDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public todo: Todo,
-    public dataService: DataService) {
+    private dialogRef: MatDialogRef<EditTodoDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) private todo: Todo,
+    private dataService: DataService) {
     this.text = todo.text;
   }
 
   submit(e: Event) {
     e.preventDefault();
-
-    const text = this.text;
-    this.dataService.editTodo({ ...this.todo, text });
+    this.dataService.editTodo({ ...this.todo, text: this.text });
     this.dialogRef.close();
   }
 

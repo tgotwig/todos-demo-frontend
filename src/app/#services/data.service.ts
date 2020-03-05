@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Todo } from '../interfaces';
-import hri from 'human-readable-ids';
-
-type Item = Todo;
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +8,15 @@ type Item = Todo;
 export class DataService {
   todos: Todo[] = [];
 
-  constructor() { }
+  constructor(private httpService: HttpService) {
+    httpService.getTodos().then(todos => this.todos = todos);
+  }
 
-  createTodo(text: string, todos: Todo[] = this.todos): {
-    todo: Todo, todos: Todo[]
-  } {
-    const todo: Todo = {
-      id: this.createUniqueId(todos),
-      text
-    };
-    this.todos = this.appendTodo(todo);
-    return { todo, todos: this.todos };
+  createTodo(text: string) {
+    this.httpService.putTodo(text)
+      .then(receivedTodo => {
+        this.todos = [receivedTodo, ...this.todos];
+      });
   }
 
   removeTodo({ id }: Todo) {
@@ -28,34 +24,22 @@ export class DataService {
     return this.todos;
   }
 
-  editTodo(editedTodo: Todo) {
-    const todos = this.todos.map(todo => {
-      if (todo.id === editedTodo.id) {
-        return {
-          ...todo, text: editedTodo.text
-        };
-      } else {
-        return todo;
-      }
-    });
-    this.todos = todos;
-    return todos;
+  editTodo({ id, text }: Todo) {
+    this.httpService.updateTodo({ id, text })
+      .then((receivedTodo) => {
+        this.todos = this.todos.map(todo => {
+          if (todo.id === receivedTodo.id) {
+            return {
+              ...todo, text
+            };
+          } else {
+            return todo;
+          }
+        });
+      });
   }
 
   getTodos() {
     return this.todos;
-  }
-
-  private appendTodo(todo: Todo): Todo[] {
-    return [...this.todos, todo];
-  }
-
-  private createUniqueId = (arr: Item[]): string => {
-    let newId: string;
-    while (true) {
-      newId = hri.hri.random();
-      const leftStacks = arr.filter(e => e.id === newId);
-      if (leftStacks.length === 0) { return newId; }
-    }
   }
 }
