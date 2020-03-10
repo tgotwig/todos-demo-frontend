@@ -1,1 +1,6 @@
+<p id="noTodosInfo" *ngIf="dataService.getTodos().length === 0">
+  You have no todos 🙂<br>
+  Enjoy 🏝<br>
+  Or create new ones 👉
+</p>
 <app-todo [todo]="todo" *ngFor="let todo of dataService.getTodos()"></app-todo>
