@@ -15,7 +15,7 @@ export class DataService {
   createTodo(text: string) {
     this.httpService.putTodo(text)
       .then(receivedTodo => {
-        this.todos = [receivedTodo, ...this.todos];
+        this.todos = [...this.todos, receivedTodo];
       });
   }
 
