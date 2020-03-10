@@ -9,8 +9,11 @@ describe('workspace-project App', () => {
   });
 
   it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('todos-demo-frontend app is running!');
+    page.navigateTo('/');
+    expect(page.getWelcomeText()).toEqual(
+      'You have no todos 🙂' + '\n' +
+      'Enjoy 🏝' + '\n' +
+      'Or create new ones 👉');
   });
 
   afterEach(async () => {
