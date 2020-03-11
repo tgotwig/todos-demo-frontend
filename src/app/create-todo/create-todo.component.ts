@@ -8,7 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./create-todo.component.scss']
 })
 export class CreateTodoComponent {
-  text: string;
+  text = '';
 
   constructor(
     public dataService: DataService,
