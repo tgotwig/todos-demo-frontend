@@ -16,4 +16,8 @@ export class AppPage {
   getSubmitTodoBtn() {
     return element(by.css('.fa-plus-circle'));
   }
+
+  getInputForTodosText() {
+    return element(by.css('#inputForTodosText'));
+  }
 }

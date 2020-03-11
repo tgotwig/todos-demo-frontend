@@ -21,10 +21,23 @@ describe('workspace-project App', () => {
     page.navigateTo('/create');
     page.getSubmitTodoBtn().click();
     page.navigateTo('/');
-    page.getTextFromTodos().then(todos => {
-      expect(todos[0]).toEqual('');
-      expect(todos.length).toEqual(1);
-    });
+    page.getTextFromTodos()
+      .then(todos => {
+        expect(todos[0]).toEqual('');
+        expect(todos.length).toEqual(1);
+      });
+  });
+
+  it('should add todo-item', () => {
+    page.navigateTo('/create');
+    page.getInputForTodosText().sendKeys('mein todo :)');
+    page.getSubmitTodoBtn().click();
+    page.navigateTo('/');
+    page.getTextFromTodos()
+      .then(todos => {
+        expect(todos[0]).toEqual('mein todo :)');
+        expect(todos.length).toEqual(1);
+      });
   });
 
   afterEach(async () => {
