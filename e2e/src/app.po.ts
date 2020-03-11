@@ -9,6 +9,10 @@ export class AppPage {
     return element(by.css('#noTodosInfo')).getText() as Promise<string>;
   }
 
+  getTextFromTodo() {
+    return element(by.css('.todoText'));
+  }
+
   getTextFromTodos() {
     return element.all(by.css('.todoText')).map((elm) => elm.getText());
   }
@@ -19,5 +23,13 @@ export class AppPage {
 
   getInputForTodosText() {
     return element(by.css('#inputForTodosText'));
+  }
+
+  getEditTodoBtn() {
+    return element(by.css('.fa-edit'));
+  }
+
+  getSubmitTodoBtn2() {
+    return element(by.css('#submitBtn'));
   }
 }

@@ -40,6 +40,19 @@ describe('workspace-project App', () => {
       });
   });
 
+  it('should rename todo-item by extending it', () => {
+    page.navigateTo('/create');
+    page.getInputForTodosText().sendKeys('mein todo :)');
+    page.getSubmitTodoBtn().click();
+    page.navigateTo('/');
+    const editBtn = page.getEditTodoBtn();
+    editBtn.click();
+    page.getInputForTodosText().sendKeys(')');
+    page.getSubmitTodoBtn2().click();
+    const todosText = page.getTextFromTodo().getText();
+    expect(todosText).toEqual('mein todo :))');
+  });
+
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);
