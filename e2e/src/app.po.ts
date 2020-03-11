@@ -8,4 +8,12 @@ export class AppPage {
   getWelcomeText(): Promise<string> {
     return element(by.css('#noTodosInfo')).getText() as Promise<string>;
   }
+
+  getTextFromTodos() {
+    return element.all(by.css('.todoText')).map((elm) => elm.getText());
+  }
+
+  getSubmitTodoBtn() {
+    return element(by.css('.fa-plus-circle'));
+  }
 }
