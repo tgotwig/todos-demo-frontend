@@ -1,6 +1,6 @@
-:host {
-  display: flex;
-  justify-content: space-evenly;
+#formField {
+  width: calc(100% - 36px);
+  font-size: 1.2rem;
 }
 
 .fa-plus-circle {
