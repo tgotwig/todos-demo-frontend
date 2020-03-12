@@ -12,3 +12,11 @@
 #content {
   grid-area: content;
 }
+
+@media screen and (min-width: 25rem) {
+  #mainCard {
+    width: 22rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
