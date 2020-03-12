@@ -21,11 +21,7 @@ describe('workspace-project App', () => {
     page.navigateTo('/create');
     page.getSubmitTodoBtn().click();
     page.navigateTo('/');
-    page.getTextFromTodos()
-      .then(todos => {
-        expect(todos[0]).toEqual('');
-        expect(todos.length).toEqual(1);
-      });
+    expect(page.getTextFromTodo().getText()).toEqual('');
   });
 
   it('should add todo-item', () => {
@@ -33,10 +29,21 @@ describe('workspace-project App', () => {
     page.getInputForTodosText().sendKeys('mein todo :)');
     page.getSubmitTodoBtn().click();
     page.navigateTo('/');
+    expect(page.getTextFromTodo().getText()).toEqual('mein todo :)');
+  });
+
+  it('should add multiple todo-items', () => {
+    page.navigateTo('/create');
+    page.getInputForTodosText().sendKeys('my first todo :)');
+    page.getSubmitTodoBtn().click();
+    page.getInputForTodosText().sendKeys('my second todo :)');
+    page.getSubmitTodoBtn().click();
+    page.navigateTo('/');
     page.getTextFromTodos()
       .then(todos => {
-        expect(todos[0]).toEqual('mein todo :)');
-        expect(todos.length).toEqual(1);
+        expect(todos[0]).toEqual('my first todo :)');
+        expect(todos[1]).toEqual('my second todo :)');
+        expect(todos.length).toEqual(2);
       });
   });
 
