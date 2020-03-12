@@ -21,6 +21,10 @@ export class AppPage {
     return element(by.css('.fa-plus-circle'));
   }
 
+  getRemoveTodoBtn() {
+    return element(by.css('.fa-times'));
+  }
+
   getInputForTodosText() {
     return element(by.css('#inputForTodosText'));
   }

@@ -62,6 +62,20 @@ describe('workspace-project App', () => {
       .toEqual(':)');
   });
 
+  it('should remove todo-item', () => {
+    page.navigateTo('/create');
+    page.getInputForTodosText().sendKeys('mein todo :)');
+    page.getSubmitTodoBtn().click();
+    page.navigateTo('/');
+
+    page.getRemoveTodoBtn().click();
+
+    page.getTextFromTodos()
+      .then(todos => {
+        expect(todos.length).toEqual(0);
+      });
+  });
+
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);
