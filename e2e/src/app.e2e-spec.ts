@@ -7,6 +7,7 @@ describe('workspace-project App', () => {
 
   beforeEach(() => {
     page = new AppPage();
+    new HttpClient('http://localhost:8080').delete('/api/todos');
   });
 
   it('should display welcome message', () => {
