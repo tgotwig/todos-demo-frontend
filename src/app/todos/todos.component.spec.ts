@@ -47,4 +47,12 @@ describe('TodosComponent', () => {
     expect(compiled.querySelectorAll('.todoWrapper').length)
       .toBeGreaterThan(0);
   });
+
+  it('should display no todo item', () => {
+    fixture = TestBed.createComponent(TodosComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelectorAll('.todoWrapper').length)
+      .toBe(0);
+  });
 });
