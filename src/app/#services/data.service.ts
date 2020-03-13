@@ -8,9 +8,13 @@ import { Guid } from 'guid-typescript';
 })
 export class DataService {
   todos: Todo[] = [];
+  initialResponseArrived = false;
 
   constructor(private httpService: HttpService) {
-    httpService.getTodos().then(todos => this.todos = todos);
+    httpService.getTodos().then(todos => {
+      this.todos = todos;
+      this.initialResponseArrived = true;
+    });
   }
 
   createTodo(text: string, http: boolean) {
