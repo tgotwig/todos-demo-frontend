@@ -19,8 +19,11 @@ export class DataService {
       });
   }
 
-  removeTodo({ id }: Todo) {
-    this.todos = this.todos.filter(todo => todo.id !== id);
+  removeTodo(todoId: string, http: boolean) {
+    this.todos = this.todos.filter(todo => todo.id !== todoId);
+    if (http) {
+      this.httpService.removeTodo(todoId);
+    }
     return this.todos;
   }
 

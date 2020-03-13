@@ -17,8 +17,8 @@ export class HttpService {
       .toPromise();
   }
 
-  async removeTodo(id: string): Promise<Todo[]> {
-    return this.http.delete<Todo[]>(`${URL}/todo/${id}`).toPromise();
+  async removeTodo(todoId: string): Promise<Todo[]> {
+    return this.http.delete<Todo[]>(`${URL}/todo/${todoId}`).toPromise();
   }
 
   async updateTodo({ id, text }: Todo): Promise<Todo> {
