@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Todo } from '../interfaces';
 import { HttpService } from './http.service';
+import { Guid } from 'guid-typescript';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,20 @@ export class DataService {
     httpService.getTodos().then(todos => this.todos = todos);
   }
 
-  createTodo(text: string) {
-    this.httpService.putTodo(text)
-      .then(receivedTodo => {
-        this.todos = [...this.todos, receivedTodo];
-      });
+  createTodo(text: string, http: boolean) {
+    if (http) {
+      this.httpService.putTodo(text)
+        .then(receivedTodo => {
+          this.todos = [...this.todos, receivedTodo];
+        });
+    } else {
+      const newTodo = { id: Guid.create().toString(), text };
+      this.todos = [...this.todos, newTodo];
+      return newTodo;
+    }
   }
 
-  removeTodo(todoId: string, http: boolean) {
+  removeTodo(todoId: string, http: boolean): Todo[] {
     this.todos = this.todos.filter(todo => todo.id !== todoId);
     if (http) {
       this.httpService.removeTodo(todoId);

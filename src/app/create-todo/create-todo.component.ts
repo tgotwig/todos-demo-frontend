@@ -17,9 +17,13 @@ export class CreateTodoComponent {
   submit(e: Event) {
     e.preventDefault();
 
-    this.dataService.createTodo(this.text);
+    this.createTodo(this.text);
     this.openSnackBar(this.text, 'added');
     this.text = '';
+  }
+
+  createTodo(text: string, http = true) {
+    return this.dataService.createTodo(text, http);
   }
 
   openSnackBar(message: string, action: string) {
